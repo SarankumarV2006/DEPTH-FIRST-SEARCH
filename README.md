@@ -1,7 +1,9 @@
 # BREADTH-FIRST-SEARCH
 <h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h3>Name:  </h3>
-<h3>Register Number: </h3>
+<h3>Name:Sarankumar V  </h3>
+<h3>Register Number: 212224220089 </h3>
+<h3>Date: 15.10.2026</h3>
+
 <H3>Aim:</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -68,41 +70,50 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 
 </ol>
 
-<hr>
-<h3>Sample Input</h3>
-<hr>
-7 9 <BR>
-A B <BR>
-A C <BR>
-A F <BR>
-C E <BR>
-C F <BR>
-C D <BR>
-D E <BR>
-D G <BR>
-G F <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['A', 'B', 'C', 'F', 'E', 'D', 'G']
+# PROGRAM 
+```
+from collections import deque
+from collections import defaultdict
+def bfs(graph, start, visited, path):
+    queue = deque()
+    visited[start] = True
+    queue.append(start)
+    path.append(start)
+    while queue:
+        node = queue.popleft()
+        for neighbour in graph[node]:
+            if not visited[neighbour]:
+                visited[neighbour] = True
+                queue.append(neighbour)
+                path.append(neighbour)
 
-<hr>
+    return path
 
-<hr>
-<h3>Sample Input</h3>
-<hr>
-5 6 <BR>
-0 1 <BR>
-0 2 <BR>
-1 2 <BR>
-1 3 <BR>
-2 4 <BR>
-3 4 <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['0', '1', '2', '3', '4']
-<hr>
+
+graph = defaultdict(list)
+
+v, e = map(int, input("Enter the number of nodes and edges: ").split())
+print("\nEnter the edges (Adjacent Nodes):")
+for i in range(e):
+    u, w = input(f"Edge {i+1} (u v): ").split()
+    graph[u].append(w)
+    graph[w].append(u)
+print("\nAdjacency List:")
+for node in graph:
+    print(node, "->", graph[node])
+start = input("\nEnter the start node for BFS: ")
+if start not in graph:
+    print("Invalid start node!")
+else:
+    visited = defaultdict(bool)
+    path = []
+    traversedpath = bfs(graph, start, visited, path)
+    print("\nBFS Traversal:", " -> ".join(traversedpath))
+```
+# OUTPUT
+<img width="1031" height="402" alt="image" src="https://github.com/user-attachments/assets/01d61dec-b0b1-4cc2-ac0b-b9c136c095f0" />
+
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
